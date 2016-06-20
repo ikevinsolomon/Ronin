@@ -29,7 +29,6 @@ const FacebookSDK = require('FacebookSDK');
 const ActionSheetIOS = require('ActionSheetIOS');
 const {Platform} = require('react-native');
 const Alert = require('Alert');
-const {restoreSchedule, loadFriendsSchedules} = require('./schedule');
 const {updateInstallation} = require('./installation');
 const {loadSurveys} = require('./surveys');
 
@@ -78,8 +77,7 @@ async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
   };
 
   return Promise.all([
-    Promise.resolve(action),
-    restoreSchedule(),
+    Promise.resolve(action)
   ]);
 }
 
@@ -91,7 +89,6 @@ function logInWithFacebook(source: ?string): ThunkAction {
     login.then(
       (result) => {
         dispatch(result);
-        dispatch(loadFriendsSchedules());
         dispatch(loadSurveys());
       }
     );

@@ -79,7 +79,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.facebook.f8"
+        applicationId "com.swaniti.swanitiapp"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 10000323

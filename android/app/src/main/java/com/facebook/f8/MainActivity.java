@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-package com.facebook.f8;
+package com.swaniti.swanitiapp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
