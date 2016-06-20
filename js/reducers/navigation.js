@@ -26,21 +26,18 @@
 
 import type {Action} from '../actions/types';
 
-export type Tab = 'map';
+export type Tab = 'map' | 'news' | 'notifications' | 'info';
 
 
 type State = {
   tab: Tab;
 };
 
-const initialState: State = { tab: 'map', day: 1 };
+const initialState: State = { tab: 'map'};
 
 function navigation(state: State = initialState, action: Action): State {
   if (action.type === 'SWITCH_TAB') {
     return {...state, tab: action.tab};
-  }
-  if (action.type === 'SWITCH_DAY') {
-    return {...state, day: action.day};
   }
   if (action.type === 'LOGGED_OUT') {
     return initialState;
