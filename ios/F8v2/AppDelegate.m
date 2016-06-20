@@ -47,7 +47,7 @@
 #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"F8v2"
+                                                      moduleName:@"Swanitiv2"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 

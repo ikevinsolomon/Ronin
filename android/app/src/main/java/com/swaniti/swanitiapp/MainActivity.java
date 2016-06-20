@@ -67,7 +67,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "F8v2";
+        return "Swanitiv2";
     }
 
     /**

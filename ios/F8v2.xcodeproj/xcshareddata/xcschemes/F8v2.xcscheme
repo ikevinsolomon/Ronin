@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "F8v2.app"
-               BlueprintName = "F8v2"
-               ReferencedContainer = "container:F8v2.xcodeproj">
+               BuildableName = "Swanitiv2.app"
+               BlueprintName = "Swanitiv2"
+               ReferencedContainer = "container:Swanitiv2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "F8v2Tests.xctest"
-               BlueprintName = "F8v2Tests"
-               ReferencedContainer = "container:F8v2.xcodeproj">
+               BuildableName = "Swanitiv2Tests.xctest"
+               BlueprintName = "Swanitiv2Tests"
+               ReferencedContainer = "container:Swanitiv2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "F8v2Tests.xctest"
-               BlueprintName = "F8v2Tests"
-               ReferencedContainer = "container:F8v2.xcodeproj">
+               BuildableName = "Swanitiv2Tests.xctest"
+               BlueprintName = "Swanitiv2Tests"
+               ReferencedContainer = "container:Swanitiv2.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "F8v2.app"
-            BlueprintName = "F8v2"
-            ReferencedContainer = "container:F8v2.xcodeproj">
+            BuildableName = "Swanitiv2.app"
+            BlueprintName = "Swanitiv2"
+            ReferencedContainer = "container:Swanitiv2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "F8v2.app"
-            BlueprintName = "F8v2"
-            ReferencedContainer = "container:F8v2.xcodeproj">
+            BuildableName = "Swanitiv2.app"
+            BlueprintName = "Swanitiv2"
+            ReferencedContainer = "container:Swanitiv2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "F8v2.app"
-            BlueprintName = "F8v2"
-            ReferencedContainer = "container:F8v2.xcodeproj">
+            BuildableName = "Swanitiv2.app"
+            BlueprintName = "Swanitiv2"
+            ReferencedContainer = "container:Swanitiv2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
