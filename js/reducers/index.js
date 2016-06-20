@@ -35,6 +35,4 @@ module.exports = combineReducers({
   topics: require('./topics'),
   filter: require('./filter'),
   navigation: require('./navigation'),
-  friendsSchedules: require('./friendsSchedules'),
-  surveys: require('./surveys'),
 });
