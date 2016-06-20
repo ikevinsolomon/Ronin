@@ -26,22 +26,14 @@
 
 import type {Action} from '../actions/types';
 
-export type Tab =
-    'schedule'
-  | 'my-schedule'
-  | 'map'
-  | 'notifications'
-  | 'info'
-  ;
+export type Tab = 'map';
 
-export type Day = 1 | 2;
 
 type State = {
   tab: Tab;
-  day: Day;
 };
 
-const initialState: State = { tab: 'schedule', day: 1 };
+const initialState: State = { tab: 'map', day: 1 };
 
 function navigation(state: State = initialState, action: Action): State {
   if (action.type === 'SWITCH_TAB') {

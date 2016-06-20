@@ -40,8 +40,6 @@ var { Text } = require('F8Text');
 var MenuItem = require('./MenuItem');
 var LoginButton = require('../common/LoginButton');
 var ProfilePicture = require('../common/ProfilePicture');
-var GeneralScheduleView = require('./schedule/GeneralScheduleView');
-var MyScheduleView = require('./schedule/MyScheduleView');
 var unseenNotificationsCount = require('./notifications/unseenNotificationsCount');
 
 var { switchTab, logOutWithPrompt } = require('../actions');
@@ -88,12 +86,6 @@ class F8TabsView extends React.Component {
   }
 
   renderNavigationView() {
-    var scheduleIcon = this.props.day === 1
-      ? require('./schedule/img/schedule-icon-1.png')
-      : require('./schedule/img/schedule-icon-2.png');
-    var scheduleIconSelected = this.props.day === 1
-      ? require('./schedule/img/schedule-icon-1-active.png')
-      : require('./schedule/img/schedule-icon-2-active.png');
     var accountItem, myF8Item, loginItem;
 
     if (this.props.user.isLoggedIn) {
@@ -108,30 +100,11 @@ class F8TabsView extends React.Component {
           </Text>
         </View>
       );
-      myF8Item = (
-        <MenuItem
-          title="My F8"
-          selected={this.props.tab === 'my-schedule'}
-          onPress={this.onTabSelect.bind(this, 'my-schedule')}
-          icon={require('./schedule/img/my-schedule-icon.png')}
-          selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
-        />
-      );
+
     } else {
       accountItem = (
         <View>
           <Image source={require('./img/logo.png')} />
-          <Text style={styles.name}>
-            APRIL 12 + 13 / SAN FRANCISCO
-          </Text>
-        </View>
-      );
-      loginItem = (
-        <View style={styles.loginPrompt}>
-          <Text style={styles.loginText}>
-            Log in to find your friends at F8.
-          </Text>
-          <LoginButton source="Drawer" />
         </View>
       );
     }
@@ -142,14 +115,7 @@ class F8TabsView extends React.Component {
           source={require('./img/drawer-header.png')}>
           {accountItem}
         </Image>
-        <MenuItem
-          title="Schedule"
-          selected={this.props.tab === 'schedule'}
-          onPress={this.onTabSelect.bind(this, 'schedule')}
-          icon={scheduleIcon}
-          selectedIcon={scheduleIconSelected}
-        />
-        {myF8Item}
+
         <MenuItem
           title="Maps"
           selected={this.props.tab === 'map'}
@@ -157,51 +123,19 @@ class F8TabsView extends React.Component {
           icon={require('./maps/img/maps-icon.png')}
           selectedIcon={require('./maps/img/maps-icon-active.png')}
         />
-        <MenuItem
-          title="Notifications"
-          selected={this.props.tab === 'notifications'}
-          onPress={this.onTabSelect.bind(this, 'notifications')}
-          badge={this.props.notificationsBadge}
-          icon={require('./notifications/img/notifications-icon.png')}
-          selectedIcon={require('./notifications/img/notifications-icon-active.png')}
-        />
-        <MenuItem
-          title="Info"
-          selected={this.props.tab === 'info'}
-          onPress={this.onTabSelect.bind(this, 'info')}
-          icon={require('./info/img/info-icon.png')}
-          selectedIcon={require('./info/img/info-icon-active.png')}
-        />
-        {loginItem}
+
       </View>
     );
   }
 
   renderContent() {
     switch (this.props.tab) {
-      case 'schedule':
-        return (
-          <GeneralScheduleView
-            navigator={this.props.navigator}
-          />
-        );
-
-      case 'my-schedule':
-        return (
-          <MyScheduleView
-            navigator={this.props.navigator}
-            onJumpToSchedule={() => this.props.onTabSelect('schedule')}
-          />
-        );
-
       case 'map':
         return <F8MapView />;
 
       case 'notifications':
         return <F8NotificationsView navigator={this.props.navigator} />;
 
-      case 'info':
-        return <F8InfoView navigator={this.props.navigator} />;
     }
     throw new Error(`Unknown tab ${this.props.tab}`);
   }

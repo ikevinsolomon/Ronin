@@ -49,7 +49,6 @@ class F8MapView extends React.Component {
   render() {
     const {map1, map2} = this.props;
 
-	    
     return (
       <View style={styles.container}>
         <ListContainer

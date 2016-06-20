@@ -24,7 +24,6 @@
  */
 'use strict';
 
-var EmptySchedule = require('../schedule/EmptySchedule');
 var Linking = require('Linking');
 var PushNUXModal = require('./PushNUXModal');
 var PureListView = require('../../common/PureListView');
@@ -66,7 +65,6 @@ class F8NotificationsView extends React.Component {
     super(props);
 
     this.renderRow = this.renderRow.bind(this);
-    this.renderEmptyList = this.renderEmptyList.bind(this);
     this.openNotification = this.openNotification.bind(this);
     this.openReview = this.openReview.bind(this);
   }
@@ -118,14 +116,6 @@ class F8NotificationsView extends React.Component {
     );
   }
 
-  renderEmptyList() {
-    return (
-      <EmptySchedule
-        title="No Notifications Yet"
-        text="Important updates and announcements will appear here"
-      />
-    );
-  }
 
   openNotification(notification) {
     if (notification.url) {

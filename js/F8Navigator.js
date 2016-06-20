@@ -29,13 +29,9 @@ var React = require('React');
 var Platform = require('Platform');
 var BackAndroid = require('BackAndroid');
 var F8TabsView = require('F8TabsView');
-var FriendsScheduleView = require('./tabs/schedule/FriendsScheduleView');
 var FilterScreen = require('./filter/FilterScreen');
 var LoginModal = require('./login/LoginModal');
 var Navigator = require('Navigator');
-var SessionsCarousel = require('./tabs/schedule/SessionsCarousel');
-var SharingSettingsModal = require('./tabs/schedule/SharingSettingsModal');
-var SharingSettingsScreen = require('./tabs/schedule/SharingSettingsScreen');
 var ThirdPartyNotices = require('./tabs/info/ThirdPartyNotices');
 var RatingScreen = require('./rating/RatingScreen');
 var StyleSheet = require('StyleSheet');
@@ -111,57 +107,6 @@ var F8Navigator = React.createClass({
   },
 
   renderScene: function(route, navigator) {
-    if (route.allSessions) {
-      return (
-        <SessionsCarousel
-          {...route}
-          navigator={navigator}
-        />
-      );
-    }
-    if (route.session) {
-      return (
-        <SessionsCarousel
-          session={route.session}
-          navigator={navigator}
-        />
-      );
-    }
-    if (route.filter) {
-      return (
-        <FilterScreen navigator={navigator} />
-      );
-    }
-    if (route.friend) {
-      return (
-        <FriendsScheduleView
-          friend={route.friend}
-          navigator={navigator}
-        />
-      );
-    }
-    if (route.login) {
-      return (
-        <LoginModal
-          navigator={navigator}
-          onLogin={route.callback}
-        />
-      );
-    }
-    if (route.share) {
-      return (
-        <SharingSettingsModal navigator={navigator} />
-      );
-    }
-    if (route.shareSettings) {
-      return <SharingSettingsScreen navigator={navigator} />;
-    }
-    if (route.rate) {
-      return <RatingScreen navigator={navigator} surveys={route.surveys} />;
-    }
-    if (route.notices) {
-      return <ThirdPartyNotices navigator={navigator} />;
-    }
     return <F8TabsView navigator={navigator} />;
   },
 });
