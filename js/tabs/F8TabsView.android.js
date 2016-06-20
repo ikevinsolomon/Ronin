@@ -28,7 +28,6 @@
 var F8InfoView = require('F8InfoView');
 var F8Colors = require('F8Colors');
 var F8MapView = require('F8MapView');
-var F8NotificationsView = require('F8NotificationsView');
 var React = require('React');
 var Navigator = require('Navigator');
 var F8DrawerLayout = require('F8DrawerLayout');
@@ -40,7 +39,6 @@ var { Text } = require('F8Text');
 var MenuItem = require('./MenuItem');
 var LoginButton = require('../common/LoginButton');
 var ProfilePicture = require('../common/ProfilePicture');
-var unseenNotificationsCount = require('./notifications/unseenNotificationsCount');
 
 var { switchTab, logOutWithPrompt } = require('../actions');
 var { connect } = require('react-redux');
@@ -117,6 +115,15 @@ class F8TabsView extends React.Component {
         </Image>
 
         <MenuItem
+          title="News"
+          selected={this.props.tab === 'news'}
+          onPress={this.onTabSelect.bind(this, 'news')}
+          icon={require('./maps/img/maps-icon.png')}
+          selectedIcon={require('./maps/img/maps-icon-active.png')}
+        />
+
+
+        <MenuItem
           title="Maps"
           selected={this.props.tab === 'map'}
           onPress={this.onTabSelect.bind(this, 'map')}
@@ -132,10 +139,6 @@ class F8TabsView extends React.Component {
     switch (this.props.tab) {
       case 'map':
         return <F8MapView />;
-
-      case 'notifications':
-        return <F8NotificationsView navigator={this.props.navigator} />;
-
     }
     throw new Error(`Unknown tab ${this.props.tab}`);
   }
@@ -165,7 +168,6 @@ function select(store) {
     tab: store.navigation.tab,
     day: store.navigation.day,
     user: store.user,
-    notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
   };
 }
 

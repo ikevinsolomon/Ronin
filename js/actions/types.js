@@ -45,7 +45,7 @@ export type Action =
   | { type: 'APPLY_TOPICS_FILTER', topics: {[key: string]: boolean} }
   | { type: 'CLEAR_FILTER' }
   | { type: 'SWITCH_DAY', day: 1 | 2 }
-  | { type: 'SWITCH_TAB', tab: 'schedule' | 'my-schedule' | 'map' | 'notifications' | 'info' }
+  | { type: 'SWITCH_TAB', tab: 'news' | 'map' | 'notifications' | 'info' }
   | { type: 'TURNED_ON_PUSH_NOTIFICATIONS' }
   | { type: 'REGISTERED_PUSH_NOTIFICATIONS' }
   | { type: 'SKIPPED_PUSH_NOTIFICATIONS' }
