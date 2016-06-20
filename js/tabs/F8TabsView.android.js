@@ -26,6 +26,7 @@
 'use strict';
 
 var F8InfoView = require('F8InfoView');
+var F8NewsView = require('F8NewsView');
 var F8Colors = require('F8Colors');
 var F8MapView = require('F8MapView');
 var React = require('React');
@@ -139,6 +140,9 @@ class F8TabsView extends React.Component {
     switch (this.props.tab) {
       case 'map':
         return <F8MapView />;
+
+      case 'news':
+        return <F8NewsView />;
     }
     throw new Error(`Unknown tab ${this.props.tab}`);
   }
@@ -166,7 +170,6 @@ F8TabsView.childContextTypes = {
 function select(store) {
   return {
     tab: store.navigation.tab,
-    day: store.navigation.day,
     user: store.user,
   };
 }
