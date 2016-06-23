@@ -54,8 +54,6 @@
   * Parse Dashboard: [http://localhost:8080/dashboard](http://localhost:8080/dashboard)
   * Graph*i*QL: [http://localhost:8080/graphql](http://localhost:8080/graphql?query=query+%7B%0A++schedule+%7B%0A++++title%0A++++speakers+%7B%0A++++++name%0A++++++title%0A++++%7D%0A++++location+%7B%0A++++++name%0A++++%7D%0A++%7D%0A%7D)
 
-  <img src=".github/screenshot-server@2x.png" width="800">
-
 
 6. **Running on Android**:
 
