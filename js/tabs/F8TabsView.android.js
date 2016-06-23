@@ -5,7 +5,6 @@
 
 'use strict';
 
-var F8InfoView = require('F8InfoView');
 var F8NewsView = require('F8NewsView');
 var F8Colors = require('F8Colors');
 var F8MapView = require('F8MapView');
@@ -92,7 +91,6 @@ class F8TabsView extends React.Component {
         <Image
           style={styles.header}
           source={require('./img/drawer-header.png')}>
-          {accountItem}
         </Image>
 
         <MenuItem

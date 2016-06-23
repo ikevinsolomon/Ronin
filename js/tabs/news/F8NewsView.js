@@ -26,10 +26,10 @@ class F8NewsView extends React.Component {
 
     return (
       <ListContainer
-      title="News"
-      backgroundImage={require('../info/img/info-background.png')}
-      backgroundColor={'#47BFBF'}>
-    </ListContainer>
+        title="News"
+        backgroundImage={require('../news/img/info-background.png')}
+        backgroundColor={'#47BFBF'}>
+      </ListContainer>
     );
   }
 
