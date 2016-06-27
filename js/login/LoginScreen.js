@@ -42,17 +42,13 @@ class LoginScreen extends React.Component {
             source={require('./img/x.png')}
           />
         </TouchableOpacity>
-        {/*<View style={styles.section}>
-          <Animated.Image
-            style={this.fadeIn(0)}
-            source={require('./img/swaniti-logo.png')}
-          />
-        </View>*/}
+
         <View style={styles.section}>
+          <Animated.View style={[styles.section, this.fadeIn(2500, 20)]}>
+            <LoginButton source="First screen" />
+          </Animated.View>
         </View>
-        <Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
-          <LoginButton source="First screen" />
-        </Animated.View>
+
       </Image>
     );
   }
