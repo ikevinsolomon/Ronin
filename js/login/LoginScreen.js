@@ -19,15 +19,11 @@ var { skipLogin } = require('../actions');
 var { connect } = require('react-redux');
 
 class LoginScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      anim: new Animated.Value(0),
-    };
-  }
+  state = {
+    anim: new Animated.Value(0),
+  };
 
   componentDidMount() {
-    StatusBarIOS && StatusBarIOS.setStyle('default');
     Animated.timing(this.state.anim, {toValue: 3000, duration: 3000}).start();
   }
 

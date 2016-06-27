@@ -1,25 +1,5 @@
 /**
- * Copyright 2016 Facebook, Inc.
- *
- * You are hereby granted a non-exclusive, worldwide, royalty-free license to
- * use, copy, modify, and distribute this software in source code or binary
- * form for use in connection with the web services and APIs provided by
- * Facebook.
- *
- * As with any software that integrates with the Facebook platform, your use
- * of this software is subject to the Facebook Developer Principles and
- * Policies [http://developers.facebook.com/policy/]. This copyright notice
- * shall be included in all copies or substantial portions of the software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE
- *
- * @providesModule F8Button
+* @providesModule F8Button
  * @flow
  */
 
@@ -27,7 +7,7 @@
 
 var F8Colors = require('F8Colors');
 var Image = require('Image');
-var LinearGradient = require('react-native-linear-gradient');
+import LinearGradient from 'react-native-linear-gradient';
 var React = require('React');
 var StyleSheet = require('StyleSheet');
 var { Text } = require('F8Text');
@@ -37,10 +17,14 @@ var View = require('View');
 class F8Button extends React.Component {
   props: {
     type: 'primary' | 'secondary' | 'bordered';
-    icon: number;
+    icon?: number;
     caption: string;
-    style: any;
-    onPress: () => void;
+    style?: any;
+    onPress: () => mixed;
+  };
+
+  static defaultProps = {
+    type: 'primary',
   };
 
   render() {
@@ -50,7 +34,7 @@ class F8Button extends React.Component {
       icon = <Image source={this.props.icon} style={styles.icon} />;
     }
     let content;
-    if (this.props.type === 'primary' || this.props.type === undefined) {
+    if (this.props.type === 'primary') {
       content = (
         <LinearGradient
           start={[0.5, 1]} end={[1, 1]}

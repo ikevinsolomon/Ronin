@@ -1,26 +1,6 @@
 
 /**
- * Copyright 2016 Facebook, Inc.
- *
- * You are hereby granted a non-exclusive, worldwide, royalty-free license to
- * use, copy, modify, and distribute this software in source code or binary
- * form for use in connection with the web services and APIs provided by
- * Facebook.
- *
- * As with any software that integrates with the Facebook platform, your use
- * of this software is subject to the Facebook Developer Principles and
- * Policies [http://developers.facebook.com/policy/]. This copyright notice
- * shall be included in all copies or substantial portions of the software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE
- *
- * @flow
+* @flow
  * @providesModule ListContainer
  */
 'use strict';
@@ -32,6 +12,7 @@ var F8Header = require('F8Header');
 var F8SegmentedControl = require('F8SegmentedControl');
 var ParallaxBackground = require('ParallaxBackground');
 var React = require('React');
+var ReactNative = require('react-native');
 var StyleSheet = require('F8StyleSheet');
 var View = require('View');
 var { Text } = require('F8Text');
@@ -49,10 +30,10 @@ type Props = {
   selectedSectionColor: string;
   backgroundImage: number;
   backgroundColor: string;
-  parallaxContent: ?ReactElement;
+  parallaxContent?: ?ReactElement;
   stickyHeader?: ?ReactElement;
   onSegmentChange?: (segment: number) => void;
-  children: any;
+  children?: any;
 };
 
 type State = {
@@ -109,22 +90,32 @@ class RelayLoading extends React.Component {
 
 class ListContainer extends React.Component {
   props: Props;
+  state: State;
   _refs: Array<any>;
   _pinned: any;
+
+  static defaultProps = {
+    selectedSectionColor: 'white',
+  };
+
+  static contextTypes = {
+    openDrawer: React.PropTypes.func,
+    hasUnreadNotifications: React.PropTypes.number,
+  };
 
   constructor(props: Props) {
     super(props);
 
-    this.state = ({
+    this.state = {
       idx: this.props.selectedSegment || 0,
       anim: new Animated.Value(0),
       stickyHeaderHeight: 0,
-    }: State);
+    };
 
-    this.renderFakeHeader = this.renderFakeHeader.bind(this);
-    this.handleStickyHeaderLayout = this.handleStickyHeaderLayout.bind(this);
-    this.handleShowMenu = this.handleShowMenu.bind(this);
-    this.handleSelectSegment = this.handleSelectSegment.bind(this);
+    (this: any).renderFakeHeader = this.renderFakeHeader.bind(this);
+    (this: any).handleStickyHeaderLayout = this.handleStickyHeaderLayout.bind(this);
+    (this: any).handleShowMenu = this.handleShowMenu.bind(this);
+    (this: any).handleSelectSegment = this.handleSelectSegment.bind(this);
     this._refs = [];
   }
 
@@ -144,7 +135,7 @@ class ListContainer extends React.Component {
     const content = React.Children.map(this.props.children, (child, idx) => {
       segments.push(child.props.title);
       return <RelayLoading>{React.cloneElement(child, {
-        ref: (ref) => this._refs[idx] = ref,
+        ref: (ref) => { this._refs[idx] = ref; },
         onScroll: (e) => this.handleScroll(idx, e),
         style: styles.listView,
         showsVerticalScrollIndicator: false,
@@ -296,7 +287,7 @@ class ListContainer extends React.Component {
 
     return (
       <Animated.View
-        ref={(ref) => this._pinned = ref}
+        ref={(ref) => { this._pinned = ref; }}
         onLayout={this.handleStickyHeaderLayout}
         style={[styles.stickyHeader, {opacity}, {transform}]}>
         {stickyHeader}
@@ -325,17 +316,17 @@ class ListContainer extends React.Component {
       var distance = EMPTY_CELL_HEIGHT - this.state.stickyHeaderHeight;
 
       if (this._refs[prevState.idx] && this._refs[prevState.idx].getScrollResponder) {
-        const oldScrollViewTag = React.findNodeHandle(
+        const oldScrollViewTag = ReactNative.findNodeHandle(
           this._refs[prevState.idx].getScrollResponder()
         );
         NativeModules.F8Scrolling.unpin(oldScrollViewTag);
       }
 
       if (this._refs[this.state.idx] && this._refs[this.state.idx].getScrollResponder) {
-        const newScrollViewTag = React.findNodeHandle(
+        const newScrollViewTag = ReactNative.findNodeHandle(
           this._refs[this.state.idx].getScrollResponder()
         );
-        const pinnedViewTag = React.findNodeHandle(this._pinned);
+        const pinnedViewTag = ReactNative.findNodeHandle(this._pinned);
         NativeModules.F8Scrolling.pin(newScrollViewTag, pinnedViewTag, distance);
       }
     }
@@ -352,15 +343,6 @@ class ListContainer extends React.Component {
     this.context.openDrawer();
   }
 }
-
-ListContainer.defaultProps = {
-  selectedSectionColor: 'white',
-};
-
-ListContainer.contextTypes = {
-  openDrawer: React.PropTypes.func,
-  hasUnreadNotifications: React.PropTypes.number,
-};
 
 var styles = StyleSheet.create({
   container: {
