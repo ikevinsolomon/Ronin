@@ -16,14 +16,10 @@ var StyleSheet = require('F8StyleSheet');
 var View = require('View');
 var { connect } = require('react-redux');
 
-var VENUE_ADDRESS = '2 Marina Blvd, San Francisco, CA 94123';
 
 class F8MapView extends React.Component {
   constructor() {
     super();
-
-    (this: any).handleGetDirections = this.handleGetDirections.bind(this);
-    (this: any).openMaps = this.openMaps.bind(this);
   }
 
   render() {
@@ -36,59 +32,18 @@ class F8MapView extends React.Component {
           backgroundImage={require('./img/maps-background.png')}
           backgroundColor={'#9176D2'}>
           <PureListView
-            title="Overview"
+            title="Baliapal"
             renderEmptyList={() => <MapView map={map1} />}
           />
           <PureListView
-            title="Developer Garage"
+            title="Basta"
             renderEmptyList={() => <MapView map={map2} />}
           />
         </ListContainer>
-        <F8Button
-          type="secondary"
-          icon={require('./img/directions.png')}
-          caption="Directions to Fort Mason Center"
-          onPress={this.handleGetDirections}
-          style={styles.directionsButton}
-        />
       </View>
     );
   }
 
-  handleGetDirections() {
-    if (Platform.OS === 'ios') {
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          title: VENUE_ADDRESS,
-          options: ['Open in Apple Maps', 'Open in Google Maps', 'Cancel'],
-          destructiveButtonIndex: -1,
-          cancelButtonIndex: 2,
-        },
-        this.openMaps
-      );
-    } else if (Platform.OS === 'android') {
-      var address = encodeURIComponent(VENUE_ADDRESS);
-      Linking.openURL('http://maps.google.com/maps?&q=' + address);
-    }
-  }
-
-  openMaps(option) {
-    var address = encodeURIComponent(VENUE_ADDRESS);
-    switch (option) {
-      case 0:
-        Linking.openURL('http://maps.apple.com/?q=' + address);
-        break;
-
-      case 1:
-        var nativeGoogleUrl = 'comgooglemaps-x-callback://?q=' +
-          address + '&x-success=f8://&x-source=F8';
-        Linking.canOpenURL(nativeGoogleUrl).then((supported) => {
-          var url = supported ? nativeGoogleUrl : 'http://maps.google.com/?q=' + address;
-          Linking.openURL(url);
-        });
-        break;
-    }
-  }
 }
 
 var styles = StyleSheet.create({
@@ -113,8 +68,8 @@ var styles = StyleSheet.create({
 
 function select(store) {
   return {
-    map1: store.maps.find((map) => map.name === 'Overview'),
-    map2: store.maps.find((map) => map.name === 'Developer Garage'),
+    map1: store.maps.find((map) => map.name === 'Baliapal'),
+    map2: store.maps.find((map) => map.name === 'Basta'),
   };
 }
 
